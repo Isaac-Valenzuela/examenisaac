@@ -1,0 +1,7 @@
+{
+  "name": "foro-noticias",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
