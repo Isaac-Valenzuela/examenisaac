@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Feed</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="cerrarSesion()">
+          Cerrar sesión
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+ 
+
+  <ion-list *ngIf="noticias.length > 0">
+  <ion-item *ngFor="let noticia of noticias">
+    <ion-avatar slot="start">
+      <img [src]="noticia.users?.profile_url || 'assets/default-profile.jpg'" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ noticia.titulo }}</h2>
+      <p>{{ noticia.descripcion }}</p>
+      <p *ngIf="noticia.apiInfo">Info API: {{ noticia.apiInfo }}</p>
+      <small *ngIf="noticia.ubicacion">Ubicación: {{ noticia.ubicacion }}</small>
+      <img *ngIf="noticia.fotoUrl" [src]="noticia.fotoUrl" style="max-width: 100%; margin-top: 8px" />
+      <small>Por: {{ noticia.email }}</small>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+
+  <ng-template #sinNoticias>
+    <ion-text class="ion-padding">
+      No hay noticias disponibles.
+    </ion-text>
+  </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="'/publicar'">-> ADD
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

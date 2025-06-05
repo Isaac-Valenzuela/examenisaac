@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicar Noticia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="titulo" placeholder="Título"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="contenido" placeholder="Contenido"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="capturarFoto()">Tomar Foto</ion-button>
+  <ion-img *ngIf="imageUrl" [src]="imageUrl" class="foto-preview"></ion-img>
+
+  <ion-button expand="block" (click)="obtenerUbicacion()">Agregar Ubicación</ion-button>
+  <p *ngIf="ubicacion">{{ ubicacion }}</p>
+
+  <ion-button expand="block" (click)="consultarApi()">Agregar info de API</ion-button>
+
+  <div *ngIf="mostrarBuscador">
+    <ion-item>
+      <ion-input [(ngModel)]="terminoBusqueda" placeholder="Buscar personaje"></ion-input>
+      <ion-button slot="end" (click)="buscarPersonaje()">Buscar</ion-button>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let p of resultados" (click)="seleccionarPersonaje(p)">
+        <ion-label>{{ p.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <p *ngIf="apiData">Personaje seleccionado: {{ apiData }}</p>
+
+  <ion-button expand="block" (click)="publicar()">Publicar</ion-button>
+  <ion-button expand="block" (click)="volverFeed()">
+  Volver al Feed
+</ion-button>
+
+
+</ion-content>
